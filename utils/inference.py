@@ -22,7 +22,7 @@ class CFG:
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
     area_threshold = 150
-    confidence_threshold = 0.25
+    confidence_threshold = 0.1
     use_tta = True
 
 
@@ -225,7 +225,7 @@ def infer_image(image):
         mean_inside = 0.0
 
     # 🔴 EXACT DECISION LOGIC MATCH
-    if area < 400 or mean_inside < 0.3:
+    if area < 150 or mean_inside < 0.1:
         return "authentic", None
 
     return "forged", mask
